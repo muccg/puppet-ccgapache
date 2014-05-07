@@ -12,7 +12,7 @@ class ccgapache (
     ensure     => running,
     hasstatus  => true,
     hasrestart => true,
-    require    => Package[$ccg_apache::params::packages]
+    require    => Package[$ccgapache::params::packages]
   }
 
   file {"${ccgapache::params::conf_d}/ccgapps.conf":
