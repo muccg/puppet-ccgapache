@@ -1,5 +1,5 @@
 #
-class ccg_apache::params {
+class ccgapache::params {
 
   case $::operatingsystem {
 
