@@ -15,12 +15,14 @@ class ccgapache (
     require    => Package[$ccgapache::params::packages]
   }
 
-  file {"${ccgapache::params::conf_d}/ccgapps.conf":
-    content => "Include ${ccgapache::params::conf_d}/*.ccg\n",
-    owner   => $user,
-    group   => $group,
-    require => Package[$ccgapache::params::packages]
-  } ~> Service[$ccgapache::params::service_name]
+  if ($::operatingsystem == 'CentOS') {
+    file {"${ccgapache::params::conf_d}/ccgapps.conf":
+      content => "Include ${ccgapache::params::conf_d}/*.ccg\n",
+      owner   => $user,
+      group   => $group,
+      require => Package[$ccgapache::params::packages]
+    } ~> Service[$ccgapache::params::service_name]
+  }
 
   file {$ccgapache::params::index_html:
     content => '',
